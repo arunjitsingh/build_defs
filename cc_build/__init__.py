@@ -1,7 +1,7 @@
 # Copyright 2012 Arunjit Singh. All Rights Reserved.
 """Build definitions for CC builds using SCons. This script creates an SCons
 environment and uses that to define libraries, binaries and tests. The tests
-requires the googletest framework, which is linked with each cc_test target.
+require the googletest framework, which is linked with each cc_test target.
 
 There are two environment variables required:
 * DEV_ROOT: The directory where all development is done. Should have directories
@@ -153,5 +153,5 @@ def cc_test(target, source, CCFLAGS=None, CPPPATH=None, LIBS=None, LIBPATH=None,
   if CPPPATH is None:
     CPPPATH = []
   CPPPATH = _Uniq(CPPPATH + GTEST_INC)
-  return cc_binary(target, source, LIBS=LIBS, CPPPATH=CPPPATH, LIBPATH=LIBPATH,
-                   debug=debug)
+  return cc_binary(target, source, CCFLAGS=CCFLAGS, CPPPATH=CPPPATH, LIBS=LIBS,
+                   LIBPATH=LIBPATH, debug=debug)
