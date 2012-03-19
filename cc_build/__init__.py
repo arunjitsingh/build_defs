@@ -20,7 +20,8 @@ SYS_INCLUDES = ['/include', '/usr/include', '/usr/local/include']
 SYS_LIBPATHS = ['/usr/lib', '/usr/local/lib']
 
 DEV_ROOT = os.environ.get('DEV_ROOT')
-AJ_INCLUDES = [os.path.join(DEV_ROOT, 'include')]
+AJ_INCLUDES = [os.path.join(DEV_ROOT, 'include'),
+               os.path.join(DEV_ROOT, 'src')]
 AJ_LIBPATHS = [os.path.join(DEV_ROOT, 'lib')]
 
 COMMON_CCFLAGS = ['-Wall']
