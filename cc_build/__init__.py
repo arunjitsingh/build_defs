@@ -130,9 +130,12 @@ GTEST_DIR = os.path.join(GOOG, 'googletest')
 GTEST_SRC = [os.path.join(GTEST_DIR, 'src', 'gtest-all.cc')]
 GTEST_INC = [os.path.join(GTEST_DIR, 'include'), GTEST_DIR]
 
-_gtest_lib = cc_library(target='gtest_lib',
-                        source=GTEST_SRC,
-                        CPPPATH=GTEST_INC)
+_gtest_lib = None
+
+def _GetTestLib():
+  return cc_library(target='gtest',
+                    source=GTEST_SRC,
+                    CPPPATH=GTEST_INC)
 
 
 def cc_test(target, source, CCFLAGS=None, CPPPATH=None, LIBS=None, LIBPATH=None,
@@ -149,6 +152,9 @@ def cc_test(target, source, CCFLAGS=None, CPPPATH=None, LIBS=None, LIBPATH=None,
   Returns:
     A test target.
   """
+  global _gtest_lib
+  if _gtest_lib is None:
+    _gtest_lib = _GetTestLib()
   assert type(source) is list
   source = _Uniq(source + [_gtest_lib])
   if CPPPATH is None:
