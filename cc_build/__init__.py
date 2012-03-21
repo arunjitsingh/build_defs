@@ -37,6 +37,8 @@ LIBPATHS = AJ_LIBPATHS + _current_libs + SYS_LIBPATHS
 _env = Script.Environment()
 _env['STATIC_AND_SHARED_OBJECTS_ARE_THE_SAME'] = True
 
+_env.Replace(CC='clang', CXX='clang++')
+
 
 def _Uniq(lst):
   """Makes a list unique.
